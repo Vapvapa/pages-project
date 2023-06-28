@@ -5,36 +5,57 @@ namespace App\Entity;
 use App\Repository\PageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Types\UuidType;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV6;
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
 class Page
 {
-    #[ORM\Id]
-    #[ORM\Column(type: UuidType::NAME, unique: true)]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    private ?Uuid $id;
-    public function __construct()
-    {
-        $this->id = Uuid::v4();
-    }
-    #[ORM\Column(length: 255)]
+
+    /**
+     * @var UuidV6
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\Column(name="uuid", type="uuid")
+     */
+    private UuidV6 $uuid;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="keywords", type="string", length=255, nullable=true)
+     */
     private ?string $keywords = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="content", type = Types::TEXT, nullable=true)
+     */
     private ?string $content = null;
 
-    public function getId(): ?Uuid
+    public function __construct()
     {
-        return $this->id;
+        $this->uuid = UuidV6::v6();
+    }
+
+    public function getId(): ?UuidV6
+    {
+        return $this->uuid;
     }
 
     public function getKeywords(): ?string

@@ -12,7 +12,9 @@ class PageController extends AbstractController
 {
     public function __construct(private ManagerRegistry $doctrine) {}
 
-    #[Route('/', name: 'app_page')]
+    /**
+     * @Route("/", name="app_page")
+     */
     public function index(): Response
     {
 
