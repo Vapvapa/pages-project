@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+    </header>
+        {% block header %}
+
+                <div class="header_logo">
+                    <a href="{{ path('app_page') }}">FAVOURITE VIDEO</a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_page') }}">Главная</a></li>
+                        <li><a href="{{ path('add_video') }}">Добавить видео</a></li>
+                        <li><a href="{{ path('app_video') }}">Мои видео</a></li>
+                    </ul>
+                </nav>
+
+
+
+                <button class="green">Войти</button>
+        {% endblock %}
+    </header>
+    <div class="center_block_main">
+        <asside>
+            {% block sidebar %}
+                <ul>
+                    <li>
+                        <a href="{{ path('add_video') }}"">Добавить видео</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('add_category') }}"">Добавить категорию</a>
+                    </li>
+                </ul>
+            {% endblock %}
+        </asside>
+        <main>
+        {% block main_cont %}
+        {% endblock %}
+        </main>
+    </div>
+    <footer>FOOTER</footer>
+    </body>
+</html>

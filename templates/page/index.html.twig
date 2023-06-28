@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PageController!{% endblock %}
+
+{% block main_cont %}
+    <h1>Главная страница FV</h1>
+    <h1>{{ homePage.title }}</h1>
+    {{ homePage.content }}
+{% endblock %}
